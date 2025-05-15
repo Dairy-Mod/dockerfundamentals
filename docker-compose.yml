@@ -1,0 +1,32 @@
+services:
+
+    api:
+        container_name: MyAPI
+        build:
+            context: .
+        ports:
+            - 3005:3000
+
+    db:
+        image: mysql:8
+        container_name: MySQLDockerCompose
+        ports:
+            - 3415:3306
+            - 3416:3306
+        environment:
+            - MYSQL_ROOT_PASSWORD=123456
+        volumes:
+            - db_mysql:/var/lib/mysql
+
+    box3:
+        image: alpine
+        container_name: Box3
+        command: sleep 3600
+
+    box4:
+        image: alpine
+        container_name: Box4
+        command: sleep 3600
+    
+volumes:
+    db_mysql:
